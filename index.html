@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Cristihian Alexander Martel Bravo</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.06);
+      --text: #f5f7ff;
+      --muted: rgba(245,247,255,.75);
+      --border: rgba(255,255,255,.12);
+      --accent: #7aa7ff;
+      --accent2: #8bffb6;
+      --warn: #ffdd7a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue";
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(122,167,255,.22), transparent 55%),
+                  radial-gradient(1000px 500px at 90% 10%, rgba(139,255,182,.18), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 18px 64px; }
+    .hero {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: 22px;
+      padding: 26px 22px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 12px; border-radius: 999px; background: rgba(122,167,255,.14);
+      border: 1px solid rgba(122,167,255,.28);
+      font-size: 13px; color: var(--muted);
+    }
+    .title {
+      margin: 14px 0 10px;
+      font-size: clamp(22px, 2.4vw, 36px);
+      line-height: 1.15;
+      letter-spacing: .2px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .meta {
+      display: grid; gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      margin-top: 12px;
+    }
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    .pill .k { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+    .pill .v { margin-top: 6px; font-weight: 650; }
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 18px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 16px 16px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(245,247,255,.92);
+    }
+    p { margin: 0 0 10px; color: var(--muted); line-height: 1.55; }
+    .links {
+      display: grid; gap: 10px;
+      margin-top: 10px;
+    }
+    .btn {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(122,167,255,.35);
+    }
+    .btn small { color: var(--muted); display:block; margin-top: 4px; }
+    .chip {
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(122,167,255,.35);
+      background: rgba(122,167,255,.14);
+      color: rgba(245,247,255,.92);
+      white-space: nowrap;
+    }
+    .row { display: grid; gap: 10px; grid-template-columns: 1fr; }
+    .field {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 12px 12px;
+    }
+    label {
+      display:block; font-size: 12px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px;
+    }
+    textarea, input, select {
+      width: 100%;
+      background: transparent;
+      color: var(--text);
+      border: 0;
+      outline: none;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea { min-height: 110px; }
+    .actions {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;
+    }
+    .action {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 650;
+    }
+    .action.primary {
+      border-color: rgba(139,255,182,.35);
+      background: rgba(139,255,182,.12);
+    }
+    .action.warn {
+      border-color: rgba(255,221,122,.35);
+      background: rgba(255,221,122,.12);
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .table th, .table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align: top;
+      font-size: 14px;
+    }
+    .table th {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      background: rgba(255,255,255,.04);
+    }
+    .muted { color: var(--muted); }
+    .footer {
+      margin-top: 18px; color: rgba(245,247,255,.65); font-size: 12px;
+    }
+    .two {
+      display:grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      margin-top: 16px;
+    }
+  
+    .gallery{
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 18px;
+    }
+    .imgcard{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .imgcard img{
+      width:100%;
+      height: 190px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .imgcap{
+      padding: 12px 14px 14px;
+    }
+    .imgcap .t{
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .imgcap .d{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge">📌 Portafolio digital — Portal de asesoría y calificación</div>
+      <div class="title">OPTIMIZACIÓN DE LOS PROCESOS OPERATIVOS EN LA EMPRESA DE PRÉSTAMOS DE DINERO “HINUS” EN AMBO, HUÁNUCO: UN ENFOQUE HACIA LA MEJORA DE LA EFICIENCIA Y LA REDUCCIÓN DE RIESGOS FINANCIEROS</div>
+
+      <div class="meta">
+        <div class="pill">
+          <div class="k">Tesista</div>
+          <div class="v">Cristihian Alexander Martel Bravo</div>
+        </div>
+        <div class="pill">
+          <div class="k">Asesora</div>
+          <div class="v">Dra. Nerida Pastrana Díaz</div>
+        </div>
+        <div class="pill">
+          <div class="k">Institución</div>
+          <div class="v">Universidad Nacional Hermilio Valdizán — Ingeniería Industrial</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="card" style="margin-top:16px;">
+      <h2>Galería del proyecto</h2>
+      <p>Imágenes referenciales para contextualizar el trabajo (BPM, plataforma y entorno de aplicación).</p>
+
+      <div class="gallery">
+        <div class="imgcard">
+          <img alt="Gestión digital y registro de créditos" src="https://commons.wikimedia.org/wiki/Special:FilePath/Laptop_with_many_charts_on_screen_on_cluttered_desk.jpg">
+          <div class="imgcap">
+            <div class="t">Plataforma y tableros</div>
+            <div class="d">Representación visual del enfoque digital para monitoreo y análisis de información.</div>
+          </div>
+        </div>
+
+        <div class="imgcard">
+          <img alt="Ciclo de mejora y rediseño de procesos (BPM)" src="https://commons.wikimedia.org/wiki/Special:FilePath/Business%20Process%20Reengineering%20Cycle.svg">
+          <div class="imgcap">
+            <div class="t">Enfoque BPM</div>
+            <div class="d">Ciclo de identificación, diseño, prueba e implementación orientado a mejora continua.</div>
+          </div>
+        </div>
+
+        <div class="imgcard">
+          <img alt="Plaza Mayor de Ambo (Huánuco, Perú)" src="https://commons.wikimedia.org/wiki/Special:FilePath/Panor%C3%A1mica_de_la_plaza_Mayor_de_Ambo_%28Hu%C3%A1nuco%2C_Per%C3%BA%29.jpg">
+          <div class="imgcap">
+            <div class="t">Entorno de aplicación</div>
+            <div class="d">Contexto geográfico del estudio: Ambo, Huánuco (Perú).</div>
+          </div>
+        </div>
+
+        <div class="imgcard">
+          <img alt="Plaza de Armas de Huánuco" src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza_de_Armas_de_Hu%C3%A1nuco_2.jpg">
+          <div class="imgcap">
+            <div class="t">Referencia regional</div>
+            <div class="d">Imagen representativa del entorno regional donde se desarrolla la investigación.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">Si deseas, puedo reemplazar estas imágenes por capturas reales de tu sistema (login, clientes, préstamos, cuotas/pagos) para que el portafolio quede 100% “del proyecto”.</div>
+    </section>
+
+
+    <div class="grid">
+      <section class="card">
+        <h2>Accesos directos</h2>
+        <p>Enlaces de los trabajos desarrollados (abrir en una nueva pestaña).</p>
+        <div class="links">
+          
+          <a class="btn" href="https://drive.google.com/file/d/1wJlAPraPGzaufrBwZPwRb0ndnalsLGkL/view?usp=sharing" target="_blank" rel="noopener">
+            <div>
+              <div style="font-weight:750">Programa de gestión digital de créditos y préstamos (Plataforma)</div>
+              <small>https://drive.google.com/file/d/1wJlAPraPGzaufrBwZPwRb0ndnalsLGkL/view?usp=sharing</small>
+            </div>
+            <span class="chip">Abrir</span>
+          </a>
+          
+          <a class="btn" href="https://drive.google.com/file/d/1Cub3XJ87Cu0Lr_kg94p-vziME7Q9ylRw/view?usp=sharing" target="_blank" rel="noopener">
+            <div>
+              <div style="font-weight:750">Borrador de tesis (Documento)</div>
+              <small>https://drive.google.com/file/d/1Cub3XJ87Cu0Lr_kg94p-vziME7Q9ylRw/view?usp=sharing</small>
+            </div>
+            <span class="chip">Abrir</span>
+          </a>
+          
+          <a class="btn" href="https://drive.google.com/file/d/1d1YexIAi-c_IsvPCYQMPI7COnAgZDjnk/view?usp=sharing" target="_blank" rel="noopener">
+            <div>
+              <div style="font-weight:750">Modelo en Bizagi (BPMN)</div>
+              <small>https://drive.google.com/file/d/1d1YexIAi-c_IsvPCYQMPI7COnAgZDjnk/view?usp=sharing</small>
+            </div>
+            <span class="chip">Abrir</span>
+          </a>
+          
+        </div>
+        <div class="footer">Tip: si tu asesora no puede abrir algún enlace, cambia la configuración de “Compartir” en Google Drive a “Cualquier persona con el enlace”.</div>
+      </section>
+</div>
+
+    <div class="two">
+      <section class="card">
+        <h2>Registro de revisión (para la asesora)</h2>
+        <p>Este formulario guarda localmente en tu navegador (no requiere internet). Puedes copiar y enviar el resumen por WhatsApp/Correo.</p>
+
+        <div class="row">
+          <div class="field">
+            <label>Fecha de revisión</label>
+            <input id="fecha" type="date" />
+          </div>
+
+          <div class="field">
+            <label>Documento / Entregable revisado</label>
+            <select id="entregable">
+              <option value="Borrador de tesis">Borrador de tesis</option>
+              <option value="Modelo BPMN (Bizagi)">Modelo BPMN (Bizagi)</option>
+              <option value="Plataforma SDGC">Plataforma SDGC</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Estado</label>
+            <select id="estado">
+              <option value="Aprobado">Aprobado</option>
+              <option value="Aprobado con correcciones">Aprobado con correcciones</option>
+              <option value="Por corregir">Por corregir</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Observaciones (qué corregir / mejorar)</label>
+            <textarea id="obs" placeholder="Escribe observaciones puntuales, con páginas/secciones y sugerencias..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Acuerdos y próximos pasos</label>
+            <textarea id="acuerdos" placeholder="Ej.: Corregir Capítulo V, actualizar tablas, entregar el viernes..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="action primary" id="guardar">Guardar revisión</button>
+            <button class="action" id="copiar">Copiar resumen</button>
+            <button class="action warn" id="limpiar">Borrar historial</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Historial de revisiones</h2>
+        <p>Lista de registros guardados. Puedes usarlo como “bitácora” de asesoría.</p>
+
+        <table class="table" id="tabla">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Entregable</th>
+              <th>Estado</th>
+              <th>Observaciones (resumen)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="footer">Nota: si deseas que tu asesora registre directamente desde su equipo, este portal puede subirse a Google Drive/Hosting como una página HTML.</div>
+      </section>
+    </div>
+
+    <div class="footer" style="margin-top:22px;">
+      © 2025 — Portafolio SDGC HINUS. Archivo HTML de una sola página.
+    </div>
+  </div>
+
+<script>
+  const KEY = "hinus_portafolio_revisiones_v1";
+
+  function $(id) { return document.getElementById(id); }
+
+  function cargar() {
+    const raw = localStorage.getItem(KEY);
+    const data = raw ? JSON.parse(raw) : [];
+    render(data);
+  }
+
+  function guardarRegistro(reg) {
+    const raw = localStorage.getItem(KEY);
+    const data = raw ? JSON.parse(raw) : [];
+    data.unshift(reg);
+    localStorage.setItem(KEY, JSON.stringify(data));
+    render(data);
+  }
+
+  function render(data) {
+    const tbody = $("tabla").querySelector("tbody");
+    tbody.innerHTML = "";
+    for (const r of data) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${r.fecha || ""}</td>
+        <td>${r.entregable || ""}</td>
+        <td>${r.estado || ""}</td>
+        <td>${(r.obs || "").slice(0, 120)}${(r.obs || "").length > 120 ? "…" : ""}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function hoyISO() {
+    const d = new Date();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    const day = String(d.getDate()).padStart(2,"0");
+    return `${d.getFullYear()}-${m}-${day}`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    $("fecha").value = hoyISO();
+    cargar();
+
+    $("guardar").addEventListener("click", () => {
+      const reg = {
+        fecha: $("fecha").value,
+        entregable: $("entregable").value,
+        estado: $("estado").value,
+        obs: $("obs").value.trim(),
+        acuerdos: $("acuerdos").value.trim(),
+      };
+      guardarRegistro(reg);
+      $("obs").value = "";
+      $("acuerdos").value = "";
+      alert("Revisión guardada.");
+    });
+
+    $("copiar").addEventListener("click", async () => {
+      const fecha = $("fecha").value;
+      const entregable = $("entregable").value;
+      const estado = $("estado").value;
+      const obs = $("obs").value.trim();
+      const acuerdos = $("acuerdos").value.trim();
+
+      const txt = `REVISIÓN SDGC HINUS\nFecha: ${fecha}\nEntregable: ${entregable}\nEstado: ${estado}\n\nObservaciones:\n${obs || "(sin observaciones)"}\n\nAcuerdos / próximos pasos:\n${acuerdos || "(sin acuerdos)"}\n`;
+      try {
+        await navigator.clipboard.writeText(txt);
+        alert("Resumen copiado al portapapeles.");
+      } catch (e) {
+        prompt("Copia manualmente este resumen:", txt);
+      }
+    });
+
+    $("limpiar").addEventListener("click", () => {
+      if (confirm("¿Seguro que deseas borrar el historial guardado en este navegador?")) {
+        localStorage.removeItem(KEY);
+        cargar();
+      }
+    });
+  });
+</script>
+</body>
+</html>
